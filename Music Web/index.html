@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ÆTHER — Music Collection</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════
+       SIDEBAR / PLAYLIST
+  ═══════════════════════════════════════════ -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="logo">
+        <span class="logo-icon">◈</span>
+        <span class="logo-text">ÆTHER</span>
+      </div>
+      <button class="sidebar-close" id="sidebarClose" aria-label="Close sidebar">✕</button>
+    </div>
+
+    <nav class="sidebar-nav">
+      <span class="nav-label">Library</span>
+      <a href="#" class="nav-item active">
+        <svg viewBox="0 0 24 24"><path d="M9 19V6l12-3v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="15" r="3"/></svg>
+        All Songs
+      </a>
+      <a href="#" class="nav-item">
+        <svg viewBox="0 0 24 24"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
+        Now Playing
+      </a>
+      <a href="#" class="nav-item">
+        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        Favourites
+      </a>
+    </nav>
+
+    <div class="playlist-section">
+      <span class="nav-label">Queue</span>
+      <ul class="playlist" id="playlist"></ul>
+    </div>
+  </aside>
+
+  <!-- overlay for mobile -->
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- ═══════════════════════════════════════════
+       MAIN CONTENT
+  ═══════════════════════════════════════════ -->
+  <main class="main">
+
+    <!-- Top bar -->
+    <header class="topbar">
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="topbar-search">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input type="text" placeholder="Search songs, artists…" id="searchInput" />
+      </div>
+      <div class="topbar-right">
+        <div class="avatar">♪</div>
+      </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-bg">
+        <div class="hero-orb hero-orb--1"></div>
+        <div class="hero-orb hero-orb--2"></div>
+        <div class="hero-orb hero-orb--3"></div>
+      </div>
+      <div class="hero-content">
+        <p class="hero-eyebrow">Welcome to the collection</p>
+        <h1 class="hero-title">My Music<br/><em>Collection</em></h1>
+        <p class="hero-sub">Hand-picked tracks, curated with love. Press play and drift away.</p>
+        <button class="hero-cta" id="heroPlay">
+          <span class="hero-cta-icon">▶</span> Play All
+        </button>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-disc" id="heroDisc">
+          <img src="" alt="" id="heroDiscImg" />
+          <div class="hero-disc-hole"></div>
+        </div>
+        <div class="hero-disc-shadow"></div>
+      </div>
+    </section>
+
+    <!-- Now Playing banner -->
+    <section class="now-playing-banner" id="nowPlayingBanner">
+      <img src="" alt="" id="npCover" class="np-cover" />
+      <div class="np-info">
+        <span class="np-label">NOW PLAYING</span>
+        <p class="np-title" id="npTitle">—</p>
+        <p class="np-artist" id="npArtist">—</p>
+      </div>
+      <div class="np-wave">
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+    </section>
+
+    <!-- Song grid -->
+    <section class="songs-section">
+      <div class="section-header">
+        <h2 class="section-title">All Tracks</h2>
+        <span class="section-count" id="songCount"></span>
+      </div>
+      <div class="songs-grid" id="songsGrid"></div>
+      <div class="no-results" id="noResults" style="display:none">
+        <p>No songs match your search ✦</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══════════════════════════════════════════
+       PLAYER BAR
+  ═══════════════════════════════════════════ -->
+  <footer class="player" id="playerBar">
+    <!-- Track info -->
+    <div class="player-track">
+      <div class="player-thumb-wrap">
+        <img src="" alt="" id="playerThumb" class="player-thumb" />
+      </div>
+      <div class="player-meta">
+        <p class="player-title" id="playerTitle">Select a track</p>
+        <p class="player-artist" id="playerArtist">—</p>
+      </div>
+      <button class="like-btn" id="likeBtn" aria-label="Like">♡</button>
+    </div>
+
+    <!-- Controls -->
+    <div class="player-controls">
+      <div class="control-btns">
+        <button class="ctrl-btn ctrl-btn--sm" id="shuffleBtn" aria-label="Shuffle" title="Shuffle">
+          <svg viewBox="0 0 24 24"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="4" y1="4" x2="9" y2="9"/></svg>
+        </button>
+        <button class="ctrl-btn" id="prevBtn" aria-label="Previous">
+          <svg viewBox="0 0 24 24"><polygon points="19 20 9 12 19 4 19 20"/><line x1="5" y1="19" x2="5" y2="5"/></svg>
+        </button>
+        <button class="ctrl-btn ctrl-btn--play" id="playPauseBtn" aria-label="Play/Pause">
+          <svg class="icon-play" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          <svg class="icon-pause" viewBox="0 0 24 24" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+        </button>
+        <button class="ctrl-btn" id="nextBtn" aria-label="Next">
+          <svg viewBox="0 0 24 24"><polygon points="5 4 15 12 5 20 5 4"/><line x1="19" y1="5" x2="19" y2="19"/></svg>
+        </button>
+        <button class="ctrl-btn ctrl-btn--sm" id="repeatBtn" aria-label="Repeat" title="Repeat">
+          <svg viewBox="0 0 24 24"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+        </button>
+      </div>
+      <div class="progress-wrap">
+        <span class="time" id="currentTime">0:00</span>
+        <div class="progress-bar" id="progressBar">
+          <div class="progress-filled" id="progressFilled"></div>
+          <div class="progress-thumb" id="progressThumb"></div>
+        </div>
+        <span class="time" id="totalTime">0:00</span>
+      </div>
+    </div>
+
+    <!-- Volume -->
+    <div class="player-volume">
+      <button class="ctrl-btn ctrl-btn--sm" id="muteBtn" aria-label="Mute">
+        <svg class="icon-vol" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+        <svg class="icon-mute" viewBox="0 0 24 24" style="display:none"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+      </button>
+      <div class="volume-bar" id="volumeBar">
+        <div class="volume-filled" id="volumeFilled" style="width:80%"></div>
+        <div class="volume-thumb" id="volumeThumb" style="left:80%"></div>
+      </div>
+    </div>
+
+    <audio id="audioPlayer"></audio>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
