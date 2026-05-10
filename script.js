@@ -74,7 +74,17 @@ const songs = [
     cover:  "covers/forest-rain.jpg",
     duration: "3:37"
   },
- 
+  { 
+  id: 7,
+    title:  "Stars Bleeding",
+   artist: "xeypredix",
+    album:  "Foliage",
+    genre:  "Ambient",
+    src:    "music/Stars Bleeding.mp3",
+    cover:  "covers/forest-rain.jpg",
+    duration: "4:42"
+  },
+   
 ];
 
 // ──────────────────────────────────────────────────────
